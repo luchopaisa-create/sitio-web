@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor de Video | Santiago Diaz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#0e0e11;
+    color:#e4e4e7;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero {
+    position:relative;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* VIDEO FONDO */
+.bg-video {
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%, -50%);
+    z-index:-2;
+}
+
+/* CAPA OSCURA ENCIMA */
+.overlay {
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    z-index:-1;
+}
+
+/* CONTENIDO */
+.hero-content {
+    z-index:2;
+}
+
+.hero h1 {
+    font-size:3.2em;
+    font-weight:600;
+}
+
+.hero span {
+    color:#d4d4d8;
+}
+
+.subtitle {
+    font-size:1.4em;
+    margin-top:15px;
+    font-weight:300;
+    color:#d1d5db;
+}
+
+/* BOTÓN */
+.btn {
+    margin-top:30px;
+    padding:14px 32px;
+    background:white;
+    color:black;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.btn:hover {
+    transform:translateY(-3px);
+    background:#d4d4d8;
+}
+
+/* SECCIONES */
+.section {
+    padding:80px 20px;
+    text-align:center;
+    background:#0e0e11;
+}
+
+.video {
+    width:90%;
+    max-width:800px;
+    border-radius:15px;
+}
+
+/* SERVICIOS */
+.services {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card {
+    background:#1a1a1f;
+    padding:25px;
+    width:260px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:translateY(-8px);
+}
+
+/* PORTAFOLIO */
+.portfolio {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.portfolio video {
+    width:300px;
+    border-radius:15px;
+}
+
+/* CONTACTO */
+.contact a {
+    color:#d4d4d8;
+    margin:10px;
+    display:inline-block;
+    text-decoration:none;
+}
+
+/* ANIMACIÓN */
+.hidden {
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.8s;
+}
+
+.show {
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO CON VIDEO -->
+<section class="hero">
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="video/JJJ.mp4" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <h1>Editor de Video <span>Profesional</span></h1>
+        <p class="subtitle">Transformo ideas en contenido que vende</p>
+        <button class="btn" onclick="scrollToSection()">Ver mi trabajo</button>
+    </div>
+</section>
+
+<!-- SHOWREEL -->
+<section class="section">
+    <video class="video" autoplay muted loop playsinline>
+        <source src="video/PPP.mp4" type="video/mp4">
+    </video>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section hidden">
+    <h2>Servicios</h2>
+    <div class="services">
+        <div class="card">Edición para YouTube</div>
+        <div class="card">Reels / TikTok</div>
+        <div class="card">Videos Publicitarios</div>
+        <div class="card">Fiverr</div>
+    </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<section id="work" class="section hidden">
+    <h2>Portafolio</h2>
+    <div class="portfolio">
+
+        <video controls>
+            <source src="video/PPP.mp4" type="video/mp4">
+        </video>
+
+        <video controls>
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section contact hidden">
+    <h2>Contáctame</h2>
+    <a href="#">WhatsApp</a>
+    <a href="#">Email</a>
+</section>
+
+<script>
+// Scroll
+function scrollToSection() {
+    document.getElementById("work").scrollIntoView({behavior:"smooth"});
+}
+
+// Animación scroll
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+});
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+```
